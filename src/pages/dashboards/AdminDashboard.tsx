@@ -36,10 +36,10 @@ const AdminDashboard = () => {
   
   // Filters
   const [filters, setFilters] = useState({
-    department: '',
-    year: '',
-    route: '',
-    busNo: '',
+    department: 'all',
+    year: 'all',
+    route: 'all',
+    busNo: 'all',
     search: ''
   });
   
@@ -96,10 +96,10 @@ const AdminDashboard = () => {
 
   const filteredStudents = students.filter(student => {
     return (
-      (filters.department === '' || student.Department === filters.department) &&
-      (filters.year === '' || student.Year === filters.year) &&
-      (filters.route === '' || student['Route Name'] === filters.route) &&
-      (filters.busNo === '' || student['Bus No'] === filters.busNo) &&
+      (filters.department === 'all' || student.Department === filters.department) &&
+      (filters.year === 'all' || student.Year === filters.year) &&
+      (filters.route === 'all' || student['Route Name'] === filters.route) &&
+      (filters.busNo === 'all' || student['Bus No'] === filters.busNo) &&
       (filters.search === '' || 
        student.Name.toLowerCase().includes(filters.search.toLowerCase()) ||
        student['Roll No'].toLowerCase().includes(filters.search.toLowerCase()))
@@ -246,7 +246,7 @@ const AdminDashboard = () => {
                       <SelectValue placeholder="All Departments" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Departments</SelectItem>
+                      <SelectItem value="all">All Departments</SelectItem>
                       {getUniqueValues(students, 'Department').map(dept => (
                         <SelectItem key={dept} value={dept}>{dept}</SelectItem>
                       ))}
@@ -261,7 +261,7 @@ const AdminDashboard = () => {
                       <SelectValue placeholder="All Years" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Years</SelectItem>
+                      <SelectItem value="all">All Years</SelectItem>
                       {getUniqueValues(students, 'Year').map(year => (
                         <SelectItem key={year} value={year}>{year}</SelectItem>
                       ))}
@@ -276,7 +276,7 @@ const AdminDashboard = () => {
                       <SelectValue placeholder="All Routes" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Routes</SelectItem>
+                      <SelectItem value="all">All Routes</SelectItem>
                       {getUniqueValues(students, 'Route Name').map(route => (
                         <SelectItem key={route} value={route}>{route}</SelectItem>
                       ))}
@@ -291,7 +291,7 @@ const AdminDashboard = () => {
                       <SelectValue placeholder="All Buses" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Buses</SelectItem>
+                      <SelectItem value="all">All Buses</SelectItem>
                       {getUniqueValues(students, 'Bus No').map(busNo => (
                         <SelectItem key={busNo} value={busNo}>{busNo}</SelectItem>
                       ))}
