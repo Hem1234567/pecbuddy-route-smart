@@ -6,9 +6,13 @@ export interface User {
   id: string;
   name: string;
   role: UserRole;
-  rollNo?: string; // for students
-  driverId?: string; // for drivers
-  email?: string; // for admin
+  rollNo?: string;
+  driverId?: string;
+  email?: string;
+  department?: string;
+  year?: string;
+  busNo?: string;
+  routeName?: string;
 }
 
 interface AuthContextType {

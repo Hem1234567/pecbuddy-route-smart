@@ -1,16 +1,7 @@
 import React from 'react';
-import { useAuth } from '@/contexts/AuthContext';
-import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuSeparator, 
-  DropdownMenuTrigger 
-} from '@/components/ui/dropdown-menu';
-import { Bus, LogOut, User, Bell } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Bus } from 'lucide-react';
+import NotificationDropdown from '@/components/notifications/NotificationDropdown';
+import ProfileDropdown from '@/components/profile/ProfileDropdown';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -19,26 +10,6 @@ interface DashboardLayoutProps {
 }
 
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, title, subtitle }) => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
-
-  const getInitials = (name: string) => {
-    return name.split(' ').map(n => n[0]).join('').toUpperCase();
-  };
-
-  const getRoleColor = (role: string) => {
-    switch (role) {
-      case 'student': return 'bg-blue-500';
-      case 'driver': return 'bg-green-500';
-      case 'admin': return 'bg-purple-500';
-      default: return 'bg-gray-500';
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background">
@@ -67,56 +38,10 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, title, subt
           {/* User Menu */}
           <div className="flex items-center space-x-4">
             {/* Notifications */}
-            <Button variant="ghost" size="icon" className="relative">
-              <Bell className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 h-3 w-3 bg-destructive rounded-full text-xs"></span>
-            </Button>
+            <NotificationDropdown />
 
-            {/* User Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-                  <Avatar className="h-10 w-10">
-                    <AvatarFallback className={`${getRoleColor(user?.role || '')} text-white`}>
-                      {user ? getInitials(user.name) : 'U'}
-                    </AvatarFallback>
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56" align="end" forceMount>
-                <div className="flex flex-col space-y-1 p-2">
-                  <p className="text-sm font-medium leading-none">{user?.name}</p>
-                  <p className="text-xs leading-none text-muted-foreground">
-                    {user?.role?.charAt(0).toUpperCase()}{user?.role?.slice(1)} Portal
-                  </p>
-                  {user?.rollNo && (
-                    <p className="text-xs leading-none text-muted-foreground">
-                      Roll: {user.rollNo}
-                    </p>
-                  )}
-                  {user?.driverId && (
-                    <p className="text-xs leading-none text-muted-foreground">
-                      ID: {user.driverId}
-                    </p>
-                  )}
-                  {user?.email && (
-                    <p className="text-xs leading-none text-muted-foreground">
-                      {user.email}
-                    </p>
-                  )}
-                </div>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <User className="mr-2 h-4 w-4" />
-                  <span>Profile</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleLogout} className="text-destructive">
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {/* User Profile */}
+            <ProfileDropdown />
           </div>
         </div>
       </header>
