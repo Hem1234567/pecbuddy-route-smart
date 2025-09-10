@@ -45,7 +45,7 @@ const AdminDashboard = () => {
   
   // Load analysis filters
   const [analysisFilters, setAnalysisFilters] = useState({
-    year: '',
+    year: 'all',
     date: new Date().toISOString().split('T')[0]
   });
 
@@ -87,7 +87,8 @@ const AdminDashboard = () => {
 
   const loadBusAnalysis = async () => {
     try {
-      const analysis = await api.getBusLoadAnalysis(analysisFilters.year);
+      const yearParam = analysisFilters.year === 'all' ? undefined : analysisFilters.year;
+      const analysis = await api.getBusLoadAnalysis(yearParam);
       setLoadAnalysis(analysis);
     } catch (error) {
       console.error('Error loading bus analysis:', error);
@@ -358,6 +359,7 @@ const AdminDashboard = () => {
                       <SelectValue placeholder="Select Year" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="all">All Years</SelectItem>
                       {getUniqueValues(students, 'Year').map(year => (
                         <SelectItem key={year} value={year}>{year}</SelectItem>
                       ))}
