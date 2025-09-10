@@ -2,41 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* PEC-BUS Design System - Transportation & College Theme */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Brand Colors - Professional Blue/Green Theme */
+    --background: 240 10% 98%;
+    --foreground: 215 25% 15%;
 
+    /* Card & Surface Colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Professional Blue for Trust & Safety */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 217 91% 55%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Clean Gray */
+    --secondary: 215 15% 95%;
+    --secondary-foreground: 215 25% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Success - Safe Green for OK Status */
+    --success: 142 76% 45%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 76% 95%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Warning - Amber for Attention */
+    --warning: 43 96% 56%;
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 43 96% 95%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Destructive - Red for Alerts */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-light: 0 84% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Muted Colors */
+    --muted: 215 15% 95%;
+    --muted-foreground: 215 15% 45%;
 
-    --radius: 0.5rem;
+    /* Accent - Teal for Highlights */
+    --accent: 180 65% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Borders & Inputs */
+    --border: 215 15% 90%;
+    --input: 215 15% 90%;
+    --ring: 217 91% 60%;
+
+    /* Transport Specific Colors */
+    --bus-primary: 217 91% 60%;
+    --route-primary: 180 65% 50%;
+    --status-running: 142 76% 45%;
+    --status-stopped: 43 96% 56%;
+    --status-breakdown: 0 84% 60%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217, 91%, 60%), hsl(180, 65%, 50%));
+    --gradient-success: linear-gradient(135deg, hsl(142, 76%, 45%), hsl(142, 76%, 55%));
+    --gradient-warning: linear-gradient(135deg, hsl(43, 96%, 56%), hsl(43, 96%, 66%));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(215 25% 15% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(215 25% 15% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(215 25% 15% / 0.1);
+    --shadow-xl: 0 20px 25px -5px hsl(215 25% 15% / 0.25);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -91,6 +127,38 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Dark mode variations */
+    --success-dark: 142 76% 35%;
+    --warning-dark: 43 96% 46%;
+    --destructive-dark: 0 84% 50%;
+  }
+
+  .dark {
+    --background: 215 25% 8%;
+    --foreground: 215 15% 95%;
+
+    --card: 215 25% 10%;
+    --card-foreground: 215 15% 95%;
+
+    --primary: 217 91% 65%;
+    --primary-foreground: 215 25% 8%;
+
+    --secondary: 215 15% 15%;
+    --secondary-foreground: 215 15% 85%;
+
+    --success: 142 76% 50%;
+    --warning: 43 96% 60%;
+    --destructive: 0 84% 65%;
+
+    --muted: 215 15% 15%;
+    --muted-foreground: 215 15% 65%;
+
+    --accent: 180 65% 55%;
+    --accent-foreground: 215 25% 8%;
+
+    --border: 215 15% 20%;
+    --input: 215 15% 20%;
+    --ring: 217 91% 65%;
   }
 }
 
@@ -100,6 +168,68 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
+
+@layer components {
+  /* Status indicator styles */
+  .status-ok {
+    @apply bg-green-50 text-green-700 border-green-200;
+  }
+  
+  .status-warning {
+    @apply bg-yellow-50 text-yellow-700 border-yellow-200;
+  }
+  
+  .status-error {
+    @apply bg-red-50 text-red-700 border-red-200;
+  }
+
+  /* Animation classes */
+  .fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 }
