@@ -24,6 +24,7 @@ import {
   Loader2
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import PreLoader from '../PreLoader';
 
 const AdminDashboard = () => {
   const { toast } = useToast();
@@ -134,7 +135,7 @@ const AdminDashboard = () => {
     return (
       <DashboardLayout title="Admin Dashboard" subtitle="Loading management data...">
         <div className="flex items-center justify-center h-64">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <PreLoader/>
         </div>
       </DashboardLayout>
     );

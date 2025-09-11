@@ -20,6 +20,7 @@ import {
   Loader2
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import PreLoader from '../PreLoader';
 
 const StudentDashboard = () => {
   const { user } = useAuth();
@@ -88,7 +89,7 @@ const StudentDashboard = () => {
     return (
       <DashboardLayout title="Student Dashboard" subtitle="Loading your bus information...">
         <div className="flex items-center justify-center h-64">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <PreLoader/>
         </div>
       </DashboardLayout>
     );

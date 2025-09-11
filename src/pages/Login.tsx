@@ -68,13 +68,13 @@ const Login = () => {
     student: {
       title: 'Student Login',
       description: 'Enter your roll number to access your bus details',
-      placeholder: 'Roll Number (e.g., 21CSE001)',
+      placeholder: 'Roll Number (e.g., 2023PECCB329)',
       icon: User,
     },
     driver: {
       title: 'Driver Login',
       description: 'Enter your driver ID to access your route details',
-      placeholder: 'Driver ID (e.g., DR001)',
+      placeholder: 'Driver ID (e.g., D1)',
       icon: Bus,
     },
     admin: {
@@ -93,9 +93,13 @@ const Login = () => {
       <div className="w-full max-w-md space-y-6">
         {/* Header */}
         <div className="text-center space-y-2">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <div className="bg-primary rounded-lg p-2">
-              <Bus className="h-8 w-8 text-white" />
+          <div className=" items-center justify-center space-x-2 mb-4">
+            <div className="mb-6 flex justify-center">
+              <img
+                src="/image (1).png"
+                alt="Logo"
+                className="h-20 w-auto"
+              />
             </div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               PEC-BUS
@@ -114,11 +118,13 @@ const Login = () => {
             <CardTitle className="text-xl">{config.title}</CardTitle>
             <CardDescription>{config.description}</CardDescription>
           </CardHeader>
-          
+
           <CardContent>
-            <Tabs 
-              value={credentials.role} 
-              onValueChange={(value) => setCredentials({...credentials, role: value as UserRole})}
+            <Tabs
+              value={credentials.role}
+              onValueChange={(value) =>
+                setCredentials({ ...credentials, role: value as UserRole })
+              }
               className="mb-4"
             >
               <TabsList className="grid w-full grid-cols-3">
@@ -131,15 +137,23 @@ const Login = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="identifier">
-                  {credentials.role === 'admin' ? 'Email' : 
-                   credentials.role === 'driver' ? 'Driver ID' : 'Roll Number'}
+                  {credentials.role === "admin"
+                    ? "Email"
+                    : credentials.role === "driver"
+                    ? "Driver ID"
+                    : "Roll Number"}
                 </Label>
                 <Input
                   id="identifier"
-                  type={credentials.role === 'admin' ? 'email' : 'text'}
+                  type={credentials.role === "admin" ? "email" : "text"}
                   placeholder={config.placeholder}
                   value={credentials.identifier}
-                  onChange={(e) => setCredentials({...credentials, identifier: e.target.value})}
+                  onChange={(e) =>
+                    setCredentials({
+                      ...credentials,
+                      identifier: e.target.value,
+                    })
+                  }
                   required
                   className="text-center"
                 />
@@ -152,20 +166,16 @@ const Login = () => {
                   type="password"
                   placeholder="Enter password"
                   value={credentials.password}
-                  onChange={(e) => setCredentials({...credentials, password: e.target.value})}
+                  onChange={(e) =>
+                    setCredentials({ ...credentials, password: e.target.value })
+                  }
                   required
                   className="text-center"
                 />
               </div>
 
-              <div className="bg-muted/50 rounded-lg p-3 text-sm text-center">
-                <p className="text-muted-foreground">
-                  Default password: <span className="font-mono bg-muted px-2 py-1 rounded">admin@0704</span>
-                </p>
-              </div>
-
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 className="w-full bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary"
                 disabled={isSubmitting}
               >
@@ -175,7 +185,7 @@ const Login = () => {
                     Signing In...
                   </>
                 ) : (
-                  `Sign In as ${config.title.split(' ')[0]}`
+                  `Sign In as ${config.title.split(" ")[0]}`
                 )}
               </Button>
             </form>
@@ -183,7 +193,7 @@ const Login = () => {
         </Card>
 
         <div className="text-center text-sm text-muted-foreground">
-          <p>© 2024 PEC-BUS Management System</p>
+          <p>© 2025 PEC-BUS </p>
         </div>
       </div>
     </div>

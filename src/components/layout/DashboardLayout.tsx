@@ -18,9 +18,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, title, subt
         <div className="flex h-16 items-center px-4 md:px-6">
           {/* Logo */}
           <div className="flex items-center space-x-2 mr-6">
-            <div className="bg-primary rounded-lg p-2">
-              <Bus className="h-6 w-6 text-white" />
-            </div>
+            <img src="/image (1).png" alt="Logo" className="h-10 w-auto" />
             <div className="hidden sm:block">
               <h1 className="text-xl font-bold text-primary">PEC-BUS</h1>
               <p className="text-xs text-muted-foreground">Management System</p>
@@ -47,9 +45,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, title, subt
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 p-4 md:p-6 space-y-6">
-        {children}
-      </main>
+      <main className="flex-1 p-4 md:p-6 space-y-6">{children}</main>
     </div>
   );
 };

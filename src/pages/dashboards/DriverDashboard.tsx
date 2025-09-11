@@ -19,6 +19,7 @@ import {
   Phone
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import PreLoader from '../PreLoader';
 
 const DriverDashboard = () => {
   const { user } = useAuth();
@@ -111,7 +112,7 @@ const DriverDashboard = () => {
     return (
       <DashboardLayout title="Driver Dashboard" subtitle="Loading your route information...">
         <div className="flex items-center justify-center h-64">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <PreLoader/>
         </div>
       </DashboardLayout>
     );
